@@ -2,6 +2,8 @@
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
+  alias(libs.plugins.hilt)
+  id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -60,6 +62,14 @@ dependencies {
   implementation(libs.androidx.material3)
   implementation(libs.androidx.appcompat)
   implementation(libs.androidx.constraintlayout)
+  implementation(libs.retrofit)
+  implementation(libs.retrofit.gson)  // Converter para Gson
+  implementation(libs.gson)  // Librería Gson
+  implementation(libs.timber)  // Logging (opcional)
+  implementation(libs.compose)
+  implementation(libs.androidx.runtime.livedata)
+  implementation(libs.hilt.android)
+  kapt(libs.hilt.compiler)
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso.core)
@@ -67,4 +77,11 @@ dependencies {
   androidTestImplementation(libs.androidx.ui.test.junit4)
   debugImplementation(libs.androidx.ui.tooling)
   debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+kapt {
+  correctErrorTypes = true
+  arguments {
+    arg("kapt.verbose", "true")  // Habilitar salida detallada de KAPT
+  }
 }
