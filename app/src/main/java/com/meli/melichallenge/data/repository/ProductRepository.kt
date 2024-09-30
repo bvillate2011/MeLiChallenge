@@ -7,15 +7,12 @@ import kotlinx.coroutines.withContext
 
 class ProductRepository(private val apiService: ProductApiService) {
 
-  // Función para buscar productos usando la API de Mercado Libre
   suspend fun searchProducts(query: String): List<Product> {
-    return withContext(Dispatchers.IO) {  // Ejecutar en un hilo de I/O
+    return withContext(Dispatchers.IO) {
       val response = apiService.searchProducts(query)
       if (response.isSuccessful) {
-        // Si la respuesta es exitosa, devolver la lista de productos
         response.body()?.results ?: emptyList()
       } else {
-        // Si ocurre un error, lanzar una excepción
         throw Exception("Error fetching products: ${response.errorBody()?.string()}")
       }
     }
