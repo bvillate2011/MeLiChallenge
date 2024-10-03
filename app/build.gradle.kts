@@ -69,6 +69,7 @@ dependencies {
   implementation(libs.compose)
   implementation(libs.androidx.runtime.livedata)
   implementation(libs.hilt.android)
+  implementation(libs.coil.compose)
   kapt(libs.hilt.compiler)
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
