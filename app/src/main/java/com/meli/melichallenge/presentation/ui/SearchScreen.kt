@@ -1,8 +1,10 @@
 package com.meli.melichallenge.presentation.ui
 
 import android.content.Intent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,6 +24,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -32,13 +36,29 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.meli.melichallenge.DetailActivity
 import com.meli.melichallenge.R
 import com.meli.melichallenge.presentation.viewmodel.ProductViewModel
+import com.meli.melichallenge.utils.StringUtils.showGenericToast
 
 @Composable
 fun SearchScreen(viewModel: ProductViewModel = viewModel()) {
   var query by remember { mutableStateOf("") }
   val keyboardController = LocalSoftwareKeyboardController.current
 
-  Column(modifier = Modifier.padding(16.dp)) {
+  Column(
+    modifier = Modifier
+      .fillMaxSize()
+      .background(
+        brush = Brush.linearGradient(
+          colors = listOf(
+            colorResource(id = R.color.mercado_libre_yellow),
+            Color.White
+          ),
+          start = Offset(0f, 0f),
+          end = Offset(0f, Float.POSITIVE_INFINITY)
+        )
+      )
+      .padding(16.dp)
+  ){
+    val context = LocalContext.current
 
     Spacer(modifier = Modifier.height(32.dp))
 
@@ -52,8 +72,12 @@ fun SearchScreen(viewModel: ProductViewModel = viewModel()) {
       ),
       keyboardActions = KeyboardActions(
         onDone = {
-          keyboardController?.hide()
-          viewModel.searchProducts(query)
+          if (query.isBlank()) {
+            showGenericToast(context, context.getString(R.string.empty_field))
+          } else {
+            keyboardController?.hide()
+            viewModel.searchProducts(query)
+          }
         }
       )
     )
@@ -61,12 +85,16 @@ fun SearchScreen(viewModel: ProductViewModel = viewModel()) {
     Spacer(modifier = Modifier.height(16.dp))
 
     Button(onClick = {
-      keyboardController?.hide()
-      viewModel.searchProducts(query)
+      if (query.isBlank()) {
+        showGenericToast(context, context.getString(R.string.empty_field))
+      } else {
+        keyboardController?.hide()
+        viewModel.searchProducts(query)
+      }
     }, modifier = Modifier.fillMaxWidth(),
        colors = ButtonDefaults.buttonColors(
-         containerColor = colorResource(id = R.color.mercado_libre_yellow), // Color de fondo desde resources
-        contentColor = Color.Black  // Color del texto
+         containerColor = colorResource(id = R.color.mercado_libre_blue),
+        contentColor = Color.White
       )
     ) {
       Text("Buscar")
@@ -83,9 +111,14 @@ fun SearchScreen(viewModel: ProductViewModel = viewModel()) {
     error?.let {
       Text(text = it, color = Color.Red)
     }
-    val context = LocalContext.current
 
-    LazyColumn {
+
+    LazyColumn(
+      modifier = Modifier
+        .fillMaxSize()
+        .background(colorResource(id = R.color.white))
+        .padding(16.dp)
+    ) {
       items(products) { product ->
         ProductRow(product = product, onClick = {
           val intent = Intent(context, DetailActivity::class.java).apply {

@@ -6,7 +6,7 @@ import com.meli.melichallenge.data.model.ProductDetail
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class ProductRepository(private val apiService: ProductApiService) {
+open class ProductRepository(private val apiService: ProductApiService) {
 
   suspend fun searchProducts(query: String): List<Product> {
     return withContext(Dispatchers.IO) {

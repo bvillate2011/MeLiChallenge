@@ -3,4 +3,5 @@
   <string name="product_title">Titulo Producto</string>
   <string name="price">Precio:</string>
   <string name="attributes">Atributos:</string>
+  <string name="empty_field">El campo de búsqueda está vacío</string>
 </resources>
