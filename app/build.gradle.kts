@@ -72,6 +72,8 @@ dependencies {
   implementation(libs.coil.compose)
   kapt(libs.hilt.compiler)
   testImplementation(libs.junit)
+  androidTestImplementation(libs.mockito.android)
+  testImplementation(libs.kotlinx.coroutines.test)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso.core)
   androidTestImplementation(platform(libs.androidx.compose.bom))

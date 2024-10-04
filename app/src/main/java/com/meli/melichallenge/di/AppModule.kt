@@ -5,7 +5,6 @@ import com.meli.melichallenge.data.api.ProductApiService
 import com.meli.melichallenge.data.repository.ProductRepository
 import com.meli.melichallenge.domain.usecase.GetProductByIdUseCase
 import com.meli.melichallenge.domain.usecase.SearchProductsUseCase
-import com.meli.melichallenge.presentation.viewmodel.ProductViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

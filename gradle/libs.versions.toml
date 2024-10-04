@@ -16,8 +16,12 @@ compose-viewmodel = "2.6.1"
 runtimeLivedata = "1.7.2"
 hilt = "2.48"
 coil = "2.0.0"
+mockito = "4.0.0"
+kotlinx-coroutines-test = "1.6.4"
 
 [libraries]
+mockito-android = { module = "org.mockito:mockito-android", version.ref = "mockito" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
