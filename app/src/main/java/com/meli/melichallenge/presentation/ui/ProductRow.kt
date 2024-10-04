@@ -2,6 +2,7 @@ package com.meli.melichallenge.presentation.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,11 +23,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.meli.melichallenge.data.model.Product
+import com.meli.melichallenge.utils.StringUtils.formatPrice
+import com.meli.melichallenge.utils.StringUtils.urlForImages
 import java.text.NumberFormat
 import java.util.Locale
 
 @Composable
-fun ProductRow(product: Product) {
+fun ProductRow(product: Product, onClick: () -> Unit) {
   Row(
     modifier = Modifier
       .fillMaxWidth()
@@ -34,6 +37,7 @@ fun ProductRow(product: Product) {
       .padding(horizontal = 8.dp, vertical = 4.dp)
       .clip(RoundedCornerShape(8.dp))
       .background(Color(0xFFE0E0E0))
+      .clickable { onClick() }
       .padding(8.dp),
     horizontalArrangement = Arrangement.SpaceBetween
   ) {
@@ -49,13 +53,11 @@ fun ProductRow(product: Product) {
       )
       Spacer(modifier = Modifier.height(4.dp))
 
-      val formattedPrice = NumberFormat.getNumberInstance(Locale.US).format(product.price)
-
-      Text(text = "${product.currency_id} $formattedPrice")
+      Text(text = "${product.currency_id} ${formatPrice(product.price.toDouble())}")
       Spacer(modifier = Modifier.height(8.dp))
     }
     Image(
-      painter = rememberAsyncImagePainter(product.thumbnail.replace("http://", "https://")),
+      painter = rememberAsyncImagePainter(urlForImages(product.thumbnail)),
       contentDescription = product.title,
       modifier = Modifier
         .size(64.dp)

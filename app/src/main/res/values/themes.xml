@@ -2,4 +2,10 @@
 <resources>
 
   <style name="Theme.MeLiChallenge" parent="android:Theme.Material.Light.NoActionBar" />
+  <style name="Theme.MyChallenge" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Customize your theme here -->
+    <item name="colorPrimary">@color/mercado_libre_yellow</item>
+    <item name="colorPrimaryDark">@color/mercado_libre_yellow</item>
+    <item name="colorAccent">@color/mercado_libre_yellow</item>
+  </style>
 </resources>

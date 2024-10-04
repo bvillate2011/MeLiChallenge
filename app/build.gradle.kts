@@ -63,9 +63,9 @@ dependencies {
   implementation(libs.androidx.appcompat)
   implementation(libs.androidx.constraintlayout)
   implementation(libs.retrofit)
-  implementation(libs.retrofit.gson)  // Converter para Gson
-  implementation(libs.gson)  // Librería Gson
-  implementation(libs.timber)  // Logging (opcional)
+  implementation(libs.retrofit.gson)
+  implementation(libs.gson)
+  implementation(libs.timber)
   implementation(libs.compose)
   implementation(libs.androidx.runtime.livedata)
   implementation(libs.hilt.android)
@@ -83,6 +83,6 @@ dependencies {
 kapt {
   correctErrorTypes = true
   arguments {
-    arg("kapt.verbose", "true")  // Habilitar salida detallada de KAPT
+    arg("kapt.verbose", "true")
   }
 }

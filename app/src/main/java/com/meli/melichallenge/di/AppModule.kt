@@ -3,6 +3,7 @@ package com.meli.melichallenge.di
 import com.meli.melichallenge.data.ApiConstants
 import com.meli.melichallenge.data.api.ProductApiService
 import com.meli.melichallenge.data.repository.ProductRepository
+import com.meli.melichallenge.domain.usecase.GetProductByIdUseCase
 import com.meli.melichallenge.domain.usecase.SearchProductsUseCase
 import com.meli.melichallenge.presentation.viewmodel.ProductViewModel
 import dagger.Module
@@ -37,5 +38,11 @@ object AppModule {
   @Singleton
   fun provideSearchProductsUseCase(productRepository: ProductRepository): SearchProductsUseCase {
     return SearchProductsUseCase(productRepository)
+  }
+
+  @Provides
+  @Singleton
+  fun provideGetProductByIdUseCase(productRepository: ProductRepository): GetProductByIdUseCase {
+    return GetProductByIdUseCase(productRepository)
   }
 }

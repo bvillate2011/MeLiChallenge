@@ -2,6 +2,7 @@ package com.meli.melichallenge.data.repository
 
 import com.meli.melichallenge.data.api.ProductApiService
 import com.meli.melichallenge.data.model.Product
+import com.meli.melichallenge.data.model.ProductDetail
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -14,6 +15,17 @@ class ProductRepository(private val apiService: ProductApiService) {
         response.body()?.results ?: emptyList()
       } else {
         throw Exception("Error fetching products: ${response.errorBody()?.string()}")
+      }
+    }
+  }
+
+  suspend fun getProductById(id: String): ProductDetail {
+    return withContext(Dispatchers.IO) {
+      val response = apiService.getProductById(id)
+      if (response.isSuccessful) {
+        response.body() ?: throw Exception("Product not found")
+      } else {
+        throw Exception("Error fetching product by ID: ${response.errorBody()?.string()}")
       }
     }
   }
