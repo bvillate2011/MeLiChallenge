@@ -1,4 +1,4 @@
-package com.meli.melichallenge
+package com.meli.melichallenge.presentation.ui.activity
 
 import android.os.Bundle
 import android.util.Log
@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -14,11 +15,13 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Observer
 import coil.compose.rememberAsyncImagePainter
+import com.meli.melichallenge.R
 import com.meli.melichallenge.data.model.ProductDetail
 import com.meli.melichallenge.presentation.viewmodel.ProductDetailViewModel
 import com.meli.melichallenge.utils.StringUtils.formatPrice
@@ -72,9 +75,9 @@ class DetailActivity : AppCompatActivity() {
     Column(
       modifier = Modifier
         .fillMaxSize()
+        .background(Color(0xFFF5F5F5))
         .padding(16.dp)
     ) {
-      // LazyRow para mostrar imágenes
       LazyRow {
         items(productDetail.pictures) { product ->
           Image(
