@@ -7,6 +7,7 @@ import java.text.NumberFormat
 import java.util.Locale
 
 object StringUtils {
+
   fun urlForImages(input: String): String {
     return input.replace("http://", "https://")
   }
@@ -22,6 +23,4 @@ object StringUtils {
   fun showGenericToast(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
   }
-
-
 }

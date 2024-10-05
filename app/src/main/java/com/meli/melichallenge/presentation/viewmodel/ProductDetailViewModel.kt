@@ -15,16 +15,24 @@ class ProductDetailViewModel @Inject constructor(
   private val getProductByIdUseCase: GetProductByIdUseCase
 ) : ViewModel() {
 
+  // LiveData holding the details of a specific product
   private val _productDetail = MutableLiveData<ProductDetail>()
   val productDetail: LiveData<ProductDetail> get() = _productDetail
 
+  // LiveData indicating if the loading operation is in progress
   private val _loading = MutableLiveData<Boolean>()
   val loading: LiveData<Boolean> get() = _loading
 
+  // LiveData containing error messages in case something goes wrong while fetching product details
   private val _error = MutableLiveData<String?>()
   val error: LiveData<String?> get() = _error
 
-  // Función para obtener los detalles de un producto por ID
+  /**
+   * Retrieves the details of a product by its ID.
+   * Updates the loading state and manages any errors that occur.
+   *
+   * @param id The product ID to fetch details for.
+   */
   fun getProductById(id: String) {
     viewModelScope.launch {
       _loading.value = true

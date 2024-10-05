@@ -1,4 +1,4 @@
-package com.meli.melichallenge.presentation.ui
+package com.meli.melichallenge.presentation.ui.screen
 
 import android.content.Intent
 import androidx.compose.foundation.background
@@ -33,8 +33,9 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.meli.melichallenge.DetailActivity
+import com.meli.melichallenge.presentation.ui.activity.DetailActivity
 import com.meli.melichallenge.R
+import com.meli.melichallenge.presentation.ui.component.ProductRow
 import com.meli.melichallenge.presentation.viewmodel.ProductViewModel
 import com.meli.melichallenge.utils.StringUtils.showGenericToast
 
@@ -109,7 +110,7 @@ fun SearchScreen(viewModel: ProductViewModel = viewModel()) {
     }
 
     error?.let {
-      Text(text = it, color = Color.Red)
+      showGenericToast(context, it)
     }
 
 

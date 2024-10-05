@@ -1,4 +1,4 @@
-package com.meli.melichallenge.presentation.ui
+package com.meli.melichallenge.presentation.ui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
